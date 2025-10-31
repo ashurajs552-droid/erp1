@@ -33,4 +33,49 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
+### Deployment Steps
+
+1. **Push your code to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
+
+2. **Connect to Vercel:**
+   - Go to [vercel.com](https://vercel.com)
+   - Sign in with your GitHub account
+   - Click "New Project"
+   - Import your repository
+   - Vercel will auto-detect Next.js settings
+
+3. **Configure Environment Variables:**
+   - In Vercel project settings, go to "Environment Variables"
+   - Add `OPENAI_API_KEY` with your OpenAI API key
+   - **Important:** Do NOT commit API keys to git. Only add them in Vercel's dashboard.
+   - Apply to Production, Preview, and Development environments
+
+4. **Deploy:**
+   - Vercel will automatically build and deploy your project
+   - Your app will be live at `https://your-project.vercel.app`
+
+### Environment Variables
+
+Create a `.env.local` file for local development:
+```
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+**Note:** The `.env.local` file is already in `.gitignore` and won't be committed.
+
+### Features
+
+- ✅ Next.js 16 with App Router
+- ✅ TypeScript
+- ✅ Tailwind CSS
+- ✅ OpenAI API Integration
+- ✅ AI-powered Homework Helper
+- ✅ Student Tools & Dashboard
+- ✅ Responsive Design
+
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
