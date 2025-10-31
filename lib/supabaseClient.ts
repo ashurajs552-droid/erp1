@@ -8,9 +8,20 @@ let supabaseInstance: SupabaseClient | null = null;
 
 function getSupabaseClient(): SupabaseClient {
   if (!supabaseInstance) {
-    // Use placeholder values during build if env vars are missing
-    const url = supabaseUrl || 'https://placeholder.supabase.co';
-    const key = supabaseAnonKey || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0';
+    // Default to project URL if env var is missing (for development)
+    const url = supabaseUrl || 'https://jonamnlkgznmizhvrngd.supabase.co';
+    const key = supabaseAnonKey || '';
+    
+    // Warn if using defaults in browser
+    if (typeof window !== 'undefined' && (!supabaseUrl || !supabaseAnonKey)) {
+      console.warn('⚠️ Supabase environment variables not found. Using defaults.');
+      console.warn('Please create .env.local with NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY');
+    }
+    
+    if (!key) {
+      console.error('❌ NEXT_PUBLIC_SUPABASE_ANON_KEY is required!');
+      throw new Error('NEXT_PUBLIC_SUPABASE_ANON_KEY is not set. Please check your .env.local file.');
+    }
     
     supabaseInstance = createClient(url, key, {
       auth: {
