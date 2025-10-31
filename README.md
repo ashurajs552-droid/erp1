@@ -81,3 +81,17 @@ OPENAI_API_KEY=your_openai_api_key_here
 - ✅ Responsive Design
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Supabase Authentication
+
+This app uses Supabase for email/password auth.
+
+Add these environment variables locally and in Vercel:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+- In Supabase → Authentication → Providers, ensure Email auth is enabled.
+- Users can sign up via the Sign Up page; login requires a valid registered email and password.

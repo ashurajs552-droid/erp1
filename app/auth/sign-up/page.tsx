@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabaseClient';
 
 export default function SignUp() {
   const router = useRouter();
@@ -14,9 +15,27 @@ export default function SignUp() {
     confirmPassword: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Demo signup - redirect to student dashboard
+    setError(null);
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+    setLoading(true);
+    const { error: signUpError } = await supabase.auth.signUp({
+      email: formData.email,
+      password: formData.password,
+      options: { data: { name: formData.name } },
+    });
+    setLoading(false);
+    if (signUpError) {
+      setError(signUpError.message);
+      return;
+    }
     router.push('/student/dashboard');
   };
 
@@ -70,6 +89,11 @@ export default function SignUp() {
           </div>
 
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+            {error && (
+              <div className="p-3 rounded-lg bg-red-50 text-red-700 text-sm border border-red-200">
+                {error}
+              </div>
+            )}
             <div className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -159,9 +183,10 @@ export default function SignUp() {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                disabled={loading}
+                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-300"
               >
-                Create account
+                {loading ? 'Creating...' : 'Create account'}
               </button>
             </div>
           </form>
