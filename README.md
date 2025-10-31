@@ -93,7 +93,13 @@ This app uses Supabase for email/password auth.
    ```
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key  # For admin operations (optional, for creating users)
    ```
+   
+   **Getting your Service Role Key:**
+   - Go to Supabase Dashboard → Project Settings → API
+   - Copy the "service_role" key (⚠️ Keep this secret, never commit it!)
+   - Add it to `.env.local` for local development only
 
 2. **Authentication Settings:**
    - In Supabase → Authentication → Providers, ensure Email auth is enabled.
@@ -102,7 +108,27 @@ This app uses Supabase for email/password auth.
      - After sign-up, users receive a confirmation email
      - To disable: Supabase Dashboard → Authentication → Settings → Disable "Enable email confirmations"
 
-3. **Database Tables:**
+3. **Creating a Test User Account:**
+   To create a user account without email confirmation:
+   
+   ```bash
+   # Make sure you have SUPABASE_SERVICE_ROLE_KEY in .env.local
+   node scripts/create-user-simple.js
+   ```
+   
+   This will create a user with:
+   - Email: `ashurajs551@gmail.com`
+   - Password: `12345678`
+   - Email auto-confirmed (no email sent)
+   - Profile automatically created
+
+   **Alternative:** Use the API endpoint:
+   ```bash
+   # Start dev server first: npm run dev
+   curl -X POST http://localhost:3000/api/admin/create-user
+   ```
+
+4. **Database Tables:**
    The following tables are automatically created:
    - **auth.users** (built-in Supabase table)
    - **public.profiles** (custom table for extended user data)
@@ -111,7 +137,7 @@ This app uses Supabase for email/password auth.
      - Protected with Row Level Security (RLS)
      - Users can only access their own profile data
 
-4. **Database Migration:**
+5. **Database Migration:**
    The migration file is located at `supabase/migrations/create_user_profiles.sql`
    - This migration has already been applied to your Supabase project
    - Creates profiles table with automatic triggers
