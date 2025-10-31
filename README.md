@@ -123,3 +123,10 @@ This app uses Supabase for email/password auth.
 - ✅ Users can only view/update their own profiles
 - ✅ Automatic profile creation on user sign-up
 - ✅ Secure function execution with proper search paths
+
+### Database Management
+
+- **Supabase MCP Integration:** Database management is handled through Supabase MCP (Model Context Protocol)
+- **Authorization:** Supabase handles all database authorization automatically through RLS policies
+- **Project Reference:** `jonamnlkgznmizhvrngd`
+- Database operations (migrations, queries, table management) are managed via Supabase dashboard and MCP
