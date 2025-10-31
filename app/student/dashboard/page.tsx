@@ -1,20 +1,9 @@
+'use client';
+
 import Link from 'next/link';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
 import Sidebar from '@/components/Sidebar';
 
 export default function StudentDashboard() {
-  const router = useRouter();
-  useEffect(() => {
-    const check = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (!data.session) {
-        router.replace('/auth/login');
-      }
-    };
-    void check();
-  }, [router]);
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
