@@ -86,12 +86,40 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 This app uses Supabase for email/password auth.
 
-Add these environment variables locally and in Vercel:
+### Setup Instructions
 
-```
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
+1. **Environment Variables:**
+   Add these environment variables locally and in Vercel:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-- In Supabase → Authentication → Providers, ensure Email auth is enabled.
-- Users can sign up via the Sign Up page; login requires a valid registered email and password.
+2. **Authentication Settings:**
+   - In Supabase → Authentication → Providers, ensure Email auth is enabled.
+   - **Email Confirmation:** Email confirmation is enabled by default (recommended for production)
+     - Users must confirm their email before logging in
+     - After sign-up, users receive a confirmation email
+     - To disable: Supabase Dashboard → Authentication → Settings → Disable "Enable email confirmations"
+
+3. **Database Tables:**
+   The following tables are automatically created:
+   - **auth.users** (built-in Supabase table)
+   - **public.profiles** (custom table for extended user data)
+     - Automatically created when a user signs up
+     - Stores: name, email, full_name, avatar_url, role
+     - Protected with Row Level Security (RLS)
+     - Users can only access their own profile data
+
+4. **Database Migration:**
+   The migration file is located at `supabase/migrations/create_user_profiles.sql`
+   - This migration has already been applied to your Supabase project
+   - Creates profiles table with automatic triggers
+   - Sets up RLS policies for secure data access
+
+### Security Features
+
+- ✅ Row Level Security (RLS) enabled on profiles table
+- ✅ Users can only view/update their own profiles
+- ✅ Automatic profile creation on user sign-up
+- ✅ Secure function execution with proper search paths
