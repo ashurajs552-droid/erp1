@@ -25,18 +25,39 @@ export default function SignUp() {
       setError('Passwords do not match');
       return;
     }
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return;
+    }
     setLoading(true);
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data, error: signUpError } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
-      options: { data: { name: formData.name } },
+      options: { 
+        data: { name: formData.name },
+        emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}/student/dashboard` : undefined,
+      },
     });
     setLoading(false);
     if (signUpError) {
       setError(signUpError.message);
       return;
     }
-    router.push('/student/dashboard');
+    
+    // Check if email confirmation is required
+    if (data.user && !data.session) {
+      // Email confirmation required
+      setError('success'); // We'll use this as a success message
+      // Show success message instead of error
+      setTimeout(() => {
+        router.push('/auth/login?message=Please check your email to confirm your account before logging in.');
+      }, 2000);
+    } else if (data.session) {
+      // User is automatically signed in (email confirmation disabled)
+      router.push('/student/dashboard');
+    } else {
+      setError('Sign up failed. Please try again.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,9 +110,14 @@ export default function SignUp() {
           </div>
 
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-            {error && (
+            {error && error !== 'success' && (
               <div className="p-3 rounded-lg bg-red-50 text-red-700 text-sm border border-red-200">
                 {error}
+              </div>
+            )}
+            {error === 'success' && (
+              <div className="p-3 rounded-lg bg-green-50 text-green-700 text-sm border border-green-200">
+                Account created successfully! Please check your email to confirm your account before logging in.
               </div>
             )}
             <div className="space-y-4">

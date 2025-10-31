@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 
@@ -14,6 +14,19 @@ export default function Login() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // Check for message from URL params (e.g., after sign-up)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const message = params.get('message');
+      if (message) {
+        setError(message);
+        // Clear the message from URL
+        window.history.replaceState({}, '', '/auth/login');
+      }
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -24,7 +37,14 @@ export default function Login() {
     });
     setLoading(false);
     if (authError) {
-      setError(authError.message);
+      // Provide more helpful error messages
+      if (authError.message.includes('Invalid login credentials') || authError.message.includes('invalid')) {
+        setError('Invalid email or password. Please check your credentials and try again.');
+      } else if (authError.message.includes('Email not confirmed') || authError.message.includes('confirmation')) {
+        setError('Please check your email and confirm your account before logging in.');
+      } else {
+        setError(authError.message);
+      }
       return;
     }
     if (data.session) {
@@ -89,7 +109,11 @@ export default function Login() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="p-3 rounded-lg bg-red-50 text-red-700 text-sm border border-red-200">
+                <div className={`p-3 rounded-lg text-sm border ${
+                  error.includes('check your email') || error.includes('confirm')
+                    ? 'bg-blue-50 text-blue-700 border-blue-200'
+                    : 'bg-red-50 text-red-700 border-red-200'
+                }`}>
                   {error}
                 </div>
               )}
