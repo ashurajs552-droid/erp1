@@ -50,11 +50,11 @@ export default function Tools() {
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
       
-      <main className="flex-1 ml-64 p-8">
+      <main className="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8 pt-20 lg:pt-8">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-blue-600 mb-2">Student Tools</h1>
-            <p className="text-gray-600">Powerful AI tools to enhance your learning and productivity</p>
+          <div className="mb-6 lg:mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-600 mb-2">Student Tools</h1>
+            <p className="text-sm sm:text-base text-gray-600">Powerful AI tools to enhance your learning and productivity</p>
           </div>
 
           {/* Search Bar */}
@@ -79,14 +79,14 @@ export default function Tools() {
           </div>
 
           {/* Filter Buttons */}
-          <div className="mb-8">
-            <div className="flex items-center gap-3 flex-wrap">
-              <span className="text-gray-700 font-medium">Filter:</span>
+          <div className="mb-6 lg:mb-8">
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+              <span className="text-sm sm:text-base text-gray-700 font-medium">Filter:</span>
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm rounded-lg font-medium transition-colors ${
                     selectedCategory === category
                       ? category === 'All Tools'
                         ? 'bg-blue-600 text-white'
@@ -106,7 +106,7 @@ export default function Tools() {
           </div>
 
           {/* Tools Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {filteredTools.map((tool) => (
               <Link
                 key={tool.id}

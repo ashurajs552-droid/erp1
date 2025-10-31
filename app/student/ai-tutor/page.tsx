@@ -222,14 +222,14 @@ export default function MasterTutor() {
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       <Sidebar />
       
-      <main className="flex-1 ml-64 overflow-hidden flex">
+      <main className="flex-1 lg:ml-64 overflow-hidden flex pt-16 lg:pt-0">
         <div className="flex-1 flex flex-col h-full">
           {/* Header */}
-          <div className="bg-white border-b border-gray-200 p-6 flex-shrink-0">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white border-b border-gray-200 p-4 sm:p-6 flex-shrink-0">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">Master Tutor</h1>
-                <p className="text-gray-600 mt-1">Your AI-powered learning companion with advanced capabilities</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Master Tutor</h1>
+                <p className="text-sm sm:text-base text-gray-600 mt-1">Your AI-powered learning companion with advanced capabilities</p>
               </div>
               <button
                 onClick={() => setShowHistory(!showHistory)}
@@ -243,10 +243,10 @@ export default function MasterTutor() {
             </div>
 
             {/* Mode Tabs */}
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setActiveMode('image')}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 text-sm rounded-lg font-medium transition-colors ${
                   activeMode === 'image' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -275,28 +275,28 @@ export default function MasterTutor() {
           </div>
 
           {/* Main Content Area */}
-          <div className="flex-1 overflow-y-auto p-8">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
             {messages.length === 0 ? (
               /* Welcome Screen */
               <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-12">
-                  <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-5xl">💡</span>
+                <div className="text-center mb-8 sm:mb-12">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <span className="text-3xl sm:text-4xl lg:text-5xl">💡</span>
                   </div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-3">Hello! I'm your Master Tutor</h2>
-                  <p className="text-lg text-gray-600">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">Hello! I'm your Master Tutor</h2>
+                  <p className="text-base sm:text-lg text-gray-600">
                     Ask me anything about your studies. I can help with homework, explain concepts, search the web,
                     and analyze images.
                   </p>
                 </div>
 
                 {/* Example Prompts */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {examplePrompts.map((prompt, index) => (
                     <button
                       key={index}
                       onClick={() => handleExampleClick(prompt.text)}
-                      className="text-left p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all group"
+                      className="text-left p-3 sm:p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all group"
                     >
                       <div className="flex items-start gap-3">
                         <span className="text-2xl">{prompt.icon}</span>
@@ -402,14 +402,14 @@ export default function MasterTutor() {
           </div>
 
           {/* Input Area */}
-          <div className="bg-white border-t border-gray-200 p-6 flex-shrink-0">
+          <div className="bg-white border-t border-gray-200 p-4 sm:p-6 flex-shrink-0">
             <div className="max-w-3xl mx-auto">
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
                 {/* AI Mode Selector */}
                 <div className="relative">
                   <button
                     onClick={() => setShowModeDropdown(!showModeDropdown)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors border border-gray-300"
+                    className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors border border-gray-300"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -516,21 +516,21 @@ export default function MasterTutor() {
                   </button>
                 </div>
               )}
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                   placeholder="Ask anything..."
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex-1 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
                 <button
                   onClick={handleSend}
                   disabled={!input.trim()}
-                  className="bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="bg-blue-500 text-white p-2 sm:p-3 rounded-lg hover:bg-blue-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
                 </button>
@@ -546,7 +546,7 @@ export default function MasterTutor() {
 
         {/* History Sidebar */}
         {showHistory && (
-          <div className="w-80 bg-white border-l border-gray-200 flex flex-col overflow-hidden">
+          <div className="hidden lg:flex w-80 bg-white border-l border-gray-200 flex flex-col overflow-hidden">
             {/* History Header */}
             <div className="p-4 border-b border-gray-200 flex items-center justify-between flex-shrink-0">
               <h2 className="text-lg font-bold text-gray-900">History</h2>

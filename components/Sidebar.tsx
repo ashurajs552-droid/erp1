@@ -3,16 +3,59 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   const isActive = (path: string) => pathname === path;
 
+  // Close sidebar when clicking outside on mobile
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Close sidebar when route changes on mobile
+  useEffect(() => {
+    if (window.innerWidth < 1024) {
+      setIsOpen(false);
+    }
+  }, [pathname]);
+
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 min-h-screen fixed left-0 top-0">
-      <div className="p-6">
-        <Link href="/" className="flex items-center space-x-2">
+    <>
+      {/* Mobile menu button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-md border border-gray-200 hover:bg-gray-50"
+        aria-label="Toggle menu"
+      >
+        <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      {/* Overlay for mobile */}
+      {isOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`fixed left-0 top-0 z-40 h-screen w-64 bg-white border-r border-gray-200 transform transition-transform duration-300 ease-in-out ${
+        isOpen ? 'translate-x-0' : '-translate-x-full'
+      } lg:translate-x-0`}>
+      <div className="p-6 flex items-center justify-between">
+        <Link href="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
           <Image
             src="/gradespark-logo.svg"
             alt="Gradespark"
@@ -21,11 +64,21 @@ export default function Sidebar() {
           />
           <span className="text-xl font-bold text-gray-900">Gradespark</span>
         </Link>
+        <button
+          onClick={() => setIsOpen(false)}
+          className="lg:hidden p-1 text-gray-500 hover:text-gray-700"
+          aria-label="Close menu"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
 
-      <nav className="px-4">
+      <nav className="px-4 overflow-y-auto h-[calc(100vh-200px)]">
         <Link
           href="/student/dashboard"
+          onClick={() => setIsOpen(false)}
           className={`flex items-center space-x-2 px-4 py-3 rounded-lg mb-2 ${
             isActive('/student/dashboard')
               ? 'bg-gray-100 text-gray-900'
@@ -54,6 +107,7 @@ export default function Sidebar() {
 
         <Link
           href="/student/assignments"
+          onClick={() => setIsOpen(false)}
           className={`flex items-center space-x-2 px-4 py-3 rounded-lg mb-2 ${
             isActive('/student/assignments')
               ? 'bg-indigo-50 text-indigo-600'
@@ -78,6 +132,7 @@ export default function Sidebar() {
 
         <Link
           href="/student/docs"
+          onClick={() => setIsOpen(false)}
           className={`flex items-center space-x-2 px-4 py-3 rounded-lg mb-2 ${
             isActive('/student/docs')
               ? 'bg-indigo-50 text-indigo-600'
@@ -106,6 +161,7 @@ export default function Sidebar() {
 
         <Link
           href="/student/assistants"
+          onClick={() => setIsOpen(false)}
           className={`flex items-center space-x-2 px-4 py-3 rounded-lg mb-2 ${
             isActive('/student/assistants')
               ? 'bg-indigo-50 text-indigo-600'
@@ -130,6 +186,7 @@ export default function Sidebar() {
 
         <Link
           href="/student/homework-help"
+          onClick={() => setIsOpen(false)}
           className={`flex items-center space-x-2 px-4 py-3 rounded-lg mb-2 ${
             isActive('/student/homework-help')
               ? 'bg-purple-50 text-purple-600'
@@ -154,6 +211,7 @@ export default function Sidebar() {
 
         <Link
           href="/student/ai-tutor"
+          onClick={() => setIsOpen(false)}
           className={`flex items-center space-x-2 px-4 py-3 rounded-lg mb-2 ${
             isActive('/student/ai-tutor')
               ? 'bg-indigo-50 text-indigo-600'
@@ -178,6 +236,7 @@ export default function Sidebar() {
 
         <Link
           href="/student/tools"
+          onClick={() => setIsOpen(false)}
           className={`flex items-center space-x-2 px-4 py-3 rounded-lg mb-2 ${
             isActive('/student/tools')
               ? 'bg-purple-50 text-purple-600'
@@ -207,7 +266,7 @@ export default function Sidebar() {
         </Link>
       </nav>
 
-      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-semibold">
             DS
@@ -219,5 +278,6 @@ export default function Sidebar() {
         </div>
       </div>
     </aside>
+  </>
   );
 }

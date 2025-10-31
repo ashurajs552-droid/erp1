@@ -77,13 +77,13 @@ export default function SignUp() {
         </div>
       </nav>
 
-      <div className="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+      <div className="flex-1 flex items-center justify-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-6 sm:space-y-8">
           <div>
-            <h2 className="text-4xl font-bold text-gray-900 text-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 text-center">
               Create your account
             </h2>
-            <p className="mt-2 text-center text-gray-600">
+            <p className="mt-2 text-center text-sm sm:text-base text-gray-600">
               Start your 30-day free trial today
             </p>
           </div>

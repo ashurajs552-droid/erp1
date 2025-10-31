@@ -8,26 +8,26 @@ export default function StudentDashboard() {
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
       
-      <main className="flex-1 ml-64 p-8">
+      <main className="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8 pt-20 lg:pt-8">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Student Dashboard</h1>
-            <p className="text-gray-600">Welcome back! Here's your AI-powered learning overview</p>
+          <div className="mb-6 lg:mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Student Dashboard</h1>
+            <p className="text-sm sm:text-base text-gray-600">Welcome back! Here's your AI-powered learning overview</p>
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-gray-50 rounded-xl p-6 shadow-sm border border-gray-200">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-medium text-gray-600">Assignments Due</h3>
-                <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
+            <div className="bg-gray-50 rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-xs sm:text-sm font-medium text-gray-600">Assignments Due</h3>
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-600 rounded-lg flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
               </div>
-              <p className="text-4xl font-bold text-blue-900">3</p>
-              <p className="text-sm text-gray-500 mt-1">This week</p>
+              <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-900">3</p>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">This week</p>
             </div>
 
             <div className="bg-gray-50 rounded-xl p-6 shadow-sm border border-gray-200">
@@ -70,13 +70,13 @@ export default function StudentDashboard() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mb-6 lg:mb-8">
             {/* Upcoming Assignments */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <div className="flex items-center justify-between mb-6">
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Upcoming Assignments</h2>
-                  <p className="text-gray-600">Your next deadlines</p>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Upcoming Assignments</h2>
+                  <p className="text-sm sm:text-base text-gray-600">Your next deadlines</p>
                 </div>
                 <Link
                   href="/student/assignments"

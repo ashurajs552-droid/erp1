@@ -94,17 +94,17 @@ export default function HomeworkHelp() {
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
       
-      <main className="flex-1 ml-64 p-8">
+      <main className="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8 pt-20 lg:pt-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-purple-600 mb-2 flex items-center gap-3">
-              <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+          <div className="mb-6 lg:mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-purple-600 mb-2 flex items-center gap-2 sm:gap-3">
+              <svg className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
               </svg>
               AI Homework Helper
             </h1>
-            <p className="text-gray-600 text-lg">Powered by advanced AI • Step-by-step guidance to help you learn.</p>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600">Powered by advanced AI • Step-by-step guidance to help you learn.</p>
             
             {/* Feature Tags */}
             <div className="flex flex-wrap gap-3 mt-4">
@@ -131,11 +131,11 @@ export default function HomeworkHelp() {
           </div>
 
           {/* Two-column content (main + aside) */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 items-start">
             {/* Main column */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-4 sm:space-y-6">
               {/* AI Learning Assistant Card */}
-              <div className="bg-purple-50 rounded-2xl p-8 border border-purple-100">
+              <div className="bg-purple-50 rounded-2xl p-4 sm:p-6 lg:p-8 border border-purple-100">
                 <div className="flex items-start gap-4">
                   <div className="bg-purple-600 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -150,11 +150,11 @@ export default function HomeworkHelp() {
               </div>
 
               {/* Ready to help section */}
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Ready to help you learn!</h2>
-                <p className="text-gray-600 mb-6">I'm your AI tutor, here to guide you through homework with step-by-step explanations.</p>
+              <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm border border-gray-200">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Ready to help you learn!</h2>
+                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">I'm your AI tutor, here to guide you through homework with step-by-step explanations.</p>
                 {/* Subject Cards */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                   {[
                     { name: 'Math', icon: '🔢', color: 'blue' },
                     { name: 'Science', icon: '🧪', color: 'green' },
@@ -174,14 +174,14 @@ export default function HomeworkHelp() {
               </div>
 
               {/* Quick Actions + Input */}
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
-                <h2 className="text-xl font-bold text-gray-900 mb-4">QUICK ACTIONS</h2>
-                <div className="flex gap-4 mb-4">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-200">
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">QUICK ACTIONS</h2>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-3 sm:mb-4">
                   <button 
                     onClick={() => handleQuickAction('upload-image')}
-                    className="flex-1 flex items-center justify-center gap-3 bg-white border-2 border-purple-200 rounded-xl p-4 hover:border-purple-400 transition-all"
+                    className="flex-1 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 bg-white border-2 border-purple-200 rounded-xl p-3 sm:p-4 hover:border-purple-400 transition-all"
                   >
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
@@ -191,9 +191,9 @@ export default function HomeworkHelp() {
                   
                   <button 
                     onClick={() => handleQuickAction('ask-question')}
-                    className="flex-1 flex items-center justify-center gap-3 bg-white border-2 border-pink-200 rounded-xl p-4 hover:border-pink-400 transition-all"
+                    className="flex-1 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 bg-white border-2 border-pink-200 rounded-xl p-3 sm:p-4 hover:border-pink-400 transition-all"
                   >
-                    <svg className="w-6 h-6 text-pink-600" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
                     </svg>
                     <span className="font-semibold text-gray-900">Ask Question</span>
@@ -211,14 +211,14 @@ export default function HomeworkHelp() {
                       }
                     }}
                     placeholder="Ask your homework question..."
-                    className="w-full px-4 py-4 pr-12 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500 transition-colors text-lg"
+                    className="w-full px-3 sm:px-4 py-3 sm:py-4 pr-10 sm:pr-12 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500 transition-colors text-base sm:text-lg"
                   />
                   <button
                     onClick={() => handleQuickAction('ask-question', question)}
                     disabled={loading || !question}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-purple-600 text-white p-2 rounded-xl hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 bg-purple-600 text-white p-1.5 sm:p-2 rounded-xl hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
                   </button>

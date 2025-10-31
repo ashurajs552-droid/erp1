@@ -78,12 +78,12 @@ export default function ToolDetail() {
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
       
-      <main className="flex-1 ml-64 p-8">
+      <main className="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8 pt-20 lg:pt-8">
         <div className="max-w-7xl mx-auto">
           {/* Back Button */}
           <button
             onClick={() => router.push('/student/tools')}
-            className="flex items-center text-gray-600 hover:text-gray-900 mb-6"
+            className="flex items-center text-gray-600 hover:text-gray-900 mb-4 sm:mb-6 text-sm sm:text-base"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -92,15 +92,15 @@ export default function ToolDetail() {
           </button>
 
           {/* Header */}
-          <div className="flex items-start gap-4 mb-8">
-            <div className={`${getIconBgColor(tool.color)} w-16 h-16 rounded-xl flex items-center justify-center text-white text-3xl flex-shrink-0`}>
+          <div className="flex items-start gap-3 sm:gap-4 mb-6 lg:mb-8">
+            <div className={`${getIconBgColor(tool.color)} w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center text-white text-2xl sm:text-3xl flex-shrink-0`}>
               {tool.icon}
             </div>
             <div className="flex-1">
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
                 {tool.name}
               </h1>
-              <p className="text-lg text-gray-600">{tool.description}</p>
+              <p className="text-base sm:text-lg text-gray-600">{tool.description}</p>
               
               {/* Categories */}
               <div className="flex flex-wrap gap-2 mt-3">
@@ -116,10 +116,10 @@ export default function ToolDetail() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             {/* Input Section */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Get Started</h2>
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Get Started</h2>
               
               {/* Instructions */}
               {tool.instruction && (
@@ -251,10 +251,10 @@ export default function ToolDetail() {
             </div>
 
             {/* Output Section */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Result</h2>
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Result</h2>
               
-              <div className="min-h-[400px]">
+              <div className="min-h-[300px] sm:min-h-[400px]">
                 {result ? (
                   <div className="bg-purple-50 p-4 rounded-lg whitespace-pre-wrap text-gray-800">
                     {result}
@@ -290,8 +290,8 @@ export default function ToolDetail() {
           </div>
 
           {/* Info Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">
+            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
               <div className="flex items-start gap-3">
                 <div className="w-5 h-5 rounded-full bg-green-500 mt-1"></div>
                 <div>
